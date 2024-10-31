@@ -1,0 +1,22 @@
+name: "pagely-deploy-uat"
+on:
+  pull_request: 
+  workflow_dispatch:
+  push:
+    tags:
+      - uat.*
+jobs:
+  deploy_rbc:
+    name: Deploy Plugin to RBC UAT Woocommerce Env
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Run deploy
+        uses: pagely/action-deploy@v1
+        with:
+          PAGELY_DEPLOY_DEST: "/httpdocs/wp-content/plugins/bread-finance"
+          PAGELY_INTEGRATION_SECRET: ${{secrets.PAGELY_INTEGRATION_SECRET_WOOCOMMERCE_RBC_UAT}}
+          PAGELY_INTEGRATION_ID: "EZaj9cnMm6xaYfWj8mTBMP"
+          PAGELY_APP_ID: "39194"
+          PAGELY_WORKING_DIR: "${{github.workspace}}"

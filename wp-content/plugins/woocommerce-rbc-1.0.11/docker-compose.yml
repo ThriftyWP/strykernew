@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+    db:
+        image: mysql:8
+        container_name: mysql
+        restart: always
+        command: "--default-authentication-plugin=mysql_native_password"
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: rbc_woocommerce
+            MYSQL_USER: rbc
+            MYSQL_PASSWORD: rbc123
+        volumes: 
+            - /var/lib/mysql
+    wordpress:
+        image: wordpress:5.5.1
+        container_name: wordpress
+        restart: always
+        ports:
+          - 8080:80
+          - 443:443
+        environment:
+            WORDPRESS_DB_HOST: db
+            WORDPRESS_DB_NAME: rbc
+            WORDPRESS_DB_USER: rbc
+            WORDPRESS_DB_PASSWORD: rbc123
+        volumes:
+            - ./wp-content:/path/to/wp-content

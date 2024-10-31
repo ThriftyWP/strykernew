@@ -1,0 +1,21 @@
+name: "pagely-deploy-preview"
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - preview.*
+jobs:
+  deploy_rbc:
+    name: Deploy Plugin to RBC PV Woocommerce Env
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Run deploy
+        uses: pagely/action-deploy@v1
+        with:
+          PAGELY_DEPLOY_DEST: "/httpdocs/wp-content/plugins/bread-finance"
+          PAGELY_INTEGRATION_SECRET: ${{secrets.PAGELY_INTEGRATION_SECRET_WOOCOMMERCE_RBC_PV}}
+          PAGELY_INTEGRATION_ID: "PLiUfeKxXiSDFFwD4Yw6AX"
+          PAGELY_APP_ID: "39334"
+          PAGELY_WORKING_DIR: "${{github.workspace}}"

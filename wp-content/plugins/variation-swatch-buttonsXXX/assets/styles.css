@@ -1,0 +1,21 @@
+.vsb-color-swatches {
+    display: flex;
+    gap: 5px;
+}
+
+.vsb-swatch {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.vsb-swatch.selected {
+    border-color: #333;
+}
+
+select[data-attribute_name="attribute_pa_color"] {
+    display: none !important;
+}

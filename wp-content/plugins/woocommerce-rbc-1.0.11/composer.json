@@ -1,0 +1,16 @@
+{
+    "name": "rbc/woocommercegateway",
+    "description": "WooCommerce Gateway RBC Payplan",
+    "type": "project",
+    "require": {
+        "sentry/sdk": "2.0"
+    },
+	"autoload": {
+		"psr-4": {
+		  "Rbc_Payplan\\Classes\\": "classes/"
+		}
+	},
+    "require-dev": {
+        "yoast/phpunit-polyfills": "^1.0"
+    }
+}
