@@ -176,44 +176,7 @@ add_action( 'wp_enqueue_scripts', function() {
     wp_enqueue_script( 'swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js', [], '9.0.0', true );
     wp_enqueue_style( 'swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css', [], '9.0.0' );
 
-    // Custom script to initialize the Swiper instance
-    wp_add_inline_script( 'swiper-js', "
-        document.addEventListener('DOMContentLoaded', function() {
-            var swiperContainer = document.querySelector('.swiper-container');
-            if (!swiperContainer) return;
-
-            var imagesPerView = parseInt(swiperContainer.dataset.imagesPerView, 10) || 3;
-            var slidesToScroll = parseInt(swiperContainer.dataset.slidesToScroll, 10) || 1;
-
-            var gallerySwiper = new Swiper('.swiper-container', {
-                loop: false,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                slidesPerView: imagesPerView,
-                slidesPerGroup: slidesToScroll,
-                spaceBetween: 10,
-                breakpoints: {
-                    768: {
-                        slidesPerView: imagesPerView,
-                    }
-                }
-            });
-
-            // Update the main image when clicking on a gallery image
-            document.querySelectorAll('.jaroncito-gallery-item img').forEach(function (thumbnail) {
-                thumbnail.addEventListener('click', function () {
-                    var mainImage = document.querySelector('.jaroncito-main-product-image');
-                    if (mainImage) {
-                        mainImage.src = this.src;
-                    }
-                });
-            });
-        });
-    " );
+    // Enqueue custom CSS and JS files
+    wp_enqueue_style( 'jaroncito-product-gallery-css', plugins_url( '/assets/css/product-gallery.css', __FILE__ ), [], '1.0.0' );
+    wp_enqueue_script( 'jaroncito-product-gallery-js', plugins_url( '/assets/js/product-gallery.js', __FILE__ ), [ 'swiper-js' ], '1.0.0', true );
 });
