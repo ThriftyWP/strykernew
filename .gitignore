@@ -1,8 +1,8 @@
 wp-config.php
-wp-content/uploads/
-wp-content/upgrade/
-wp-content/cache/
-wp-admin/
-wp-includes/
+wp-content/uploads/*
+wp-content/upgrade/*
+wp-content/cache/*
+wp-admin/*
+wp-includes/*
 .htaccess
 *.log
