@@ -67,10 +67,14 @@ class Jaroncito_ElementAddons {
      * Register custom scripts and styles for Elementor widgets.
      */
     public function register_scripts() {
+        // Register Swiper
+        wp_register_script('swiper-js', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js', [], '9.0.0', true);
+        wp_register_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css', [], '9.0.0');
+    
         // Register custom scripts
         wp_register_script( 'jaroncito-elementaddons-js', plugins_url( '/assets/js/elementaddons.js', __FILE__ ), [ 'jquery' ], self::VERSION, true );
-        wp_register_script( 'jaroncito-product-gallery-js', plugins_url( '/assets/js/product-gallery.js', __FILE__ ), [ 'jquery' ], self::VERSION, true );
-
+        wp_register_script( 'jaroncito-product-gallery-js', plugins_url( '/assets/js/product-gallery.js', __FILE__ ), [ 'jquery', 'swiper-js' ], self::VERSION, true );
+    
         // Register custom styles
         wp_register_style( 'jaroncito-elementaddons-css', plugins_url( '/assets/css/elementaddons.css', __FILE__ ), [], self::VERSION );
         wp_register_style( 'jaroncito-product-gallery-css', plugins_url( '/assets/css/product-gallery.css', __FILE__ ), [], self::VERSION );

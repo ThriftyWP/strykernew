@@ -18,10 +18,11 @@ function enqueue_slick_slider_and_custom_script() {
     // Enqueue Slick Slider CSS and JS
     wp_enqueue_style( 'slick-css', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css' );
     wp_enqueue_style( 'slick-theme-css', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css' );
-    wp_enqueue_script( 'slick-js', 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js', array('jquery'), '1.8.1', true );
+    wp_register_script('custom_slick_script', '/wp-content/themes/NewStryker/js/slick-min.js', array( 'jquery' ));
+    wp_enqueue_script( 'custom_slick_script');
     
     // Enqueue your custom slider JS
-    wp_enqueue_script( 'custom-slider-js', '/wp-content/themes/NewStryker/js/custom-slider.js', array('jquery', 'slick-js'), null, true );
+    wp_enqueue_script( 'custom-slider-js', '/wp-content/themes/NewStryker/js/custom-slider.js', array('jquery', 'custom_slick_script'), null, true );
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_slick_slider_and_custom_script' );
 
@@ -32,6 +33,7 @@ function true_health_video_slider_shortcode() {
     if( have_rows('video_gallery') ):
         ob_start(); // Start output buffering
         ?>
+        <h3 class="elementor-heading-title elementor-size-default element-h3">Instructional Videos:</h3>
         <div class="video-slider">
         <?php while( have_rows('video_gallery') ): the_row(); 
             $video_url = get_sub_field('video_url'); // Or 'video_file' if using file upload
